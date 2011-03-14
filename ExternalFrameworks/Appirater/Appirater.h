@@ -147,7 +147,7 @@ extern NSString *const kAppiraterDeclinedToRate;
  looks and making sure the link to your app's review page works.
  */
 #ifndef APPIRATER_DEBUG
-#define APPIRATER_DEBUG				YES
+#define APPIRATER_DEBUG				NO
 #endif
 
 @interface Appirater : NSObject <UIAlertViewDelegate> {
