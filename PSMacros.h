@@ -13,6 +13,7 @@
 // http://www.wilshipley.com/blog/2005/10/pimp-my-code-interlude-free-code.html
 static inline BOOL IsEmpty(id thing) {
 	return thing == nil ||
+  ([thing isEqual:[NSNull null]]) ||
   ([thing respondsToSelector:@selector(length)] && [(NSData *)thing length] == 0) ||
   ([thing respondsToSelector:@selector(count)]  && [(NSArray *)thing count] == 0);
 }
@@ -20,6 +21,16 @@ static inline BOOL IsEmpty(id thing) {
 // CGRect
 #define PSRectClearCoords(_CGRECT) CGRectMake(0, 0, _CGRECT.size.width, _CGRECT.size.height)
 #define CGRectClearCoords(_CGRECT) PSRectClearCoords(_CGRECT) // legacy
+
+// portrait/landscape corrected screen bounds
+static inline CGRect PSScreenBounds() {
+  CGRect bounds = [UIScreen mainScreen].bounds;
+  if (UIInterfaceOrientationIsLandscape([[UIApplication sharedApplication] statusBarOrientation])) {
+    bounds.size.width = [UIScreen mainScreen].bounds.size.height;
+    bounds.size.height = [UIScreen mainScreen].bounds.size.width;
+  }
+  return bounds;
+}
 
 // color
 #define SETTINGS_TEXT_COLOR	RGBCOLOR(57, 85, 135)

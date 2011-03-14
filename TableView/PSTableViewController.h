@@ -10,6 +10,8 @@
 
 // custom reimplementation of UITableViewController for more flexibility
 @interface PSTableViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+  NSIndexPath *lastSelectedIndexPath_;
+
 @private
   BOOL useShadows;
   UITableView *tableView;
@@ -20,6 +22,7 @@
 @property (nonatomic, readonly) UITableViewStyle tableViewStyle;
 
 @property (nonatomic) BOOL useShadows;
+@property (nonatomic, retain) NSIndexPath *lastSelectedIndexPath;
 
 - (UITableView *)createTableView;
 
