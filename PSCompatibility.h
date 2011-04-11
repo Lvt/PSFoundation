@@ -67,5 +67,14 @@ if (kCFCoreFoundationVersionNumber < kCFCoreFoundationVersionNumber_iPhoneOS_3_2
 __VA_ARGS__ \
 }
 
+// special addition for Chameleon support: http://chameleonproject.org/
+#ifdef MAC_OSX_BUILD // needs to be defined in project settings
+#define IF_IOS(...)
+#define IF_DESKTOP(...) do {__VA_ARGS__} while(0);
+#else
+#define IF_IOS(...) do {__VA_ARGS__} while(0);
+#define IF_DESKTOP(...)
+#endif
+
 
 BOOL isIPad();
